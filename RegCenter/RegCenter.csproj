@@ -132,6 +132,7 @@
     <Compile Include="Models\Auth.cs" />
     <Compile Include="Models\Etouches.cs" />
     <Compile Include="Models\EventsList.cs" />
+    <Compile Include="Models\QuestionsList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
