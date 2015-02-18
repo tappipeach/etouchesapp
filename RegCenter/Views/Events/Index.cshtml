@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Events";
+}
+
+<h2>TAPPI Events</h2>
+
+<p>See a list or search for your events of interest!</p>
+
+<div class="input-group input-group-lg">
+    <input type="text" class="form-control input-lg" placeholder="Search for event..." />
+</div>
+
+<div class="table">
+    <table class="table table-striped">
+        @foreach (var eachEvent in ViewBag.list)
+        {
+            <tr><td><a href="#">@eachEvent.name</a></td></tr> //table row for each event
+        }
+    </table>
+</div>
+
+

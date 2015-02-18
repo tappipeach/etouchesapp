@@ -15,7 +15,6 @@ namespace RegCenter.Models
         public String enddate { get; set; }
         public String timezoneid { get; set; }
         public String dateformat { get; set; }
-
     }
 
 

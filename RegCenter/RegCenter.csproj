@@ -129,6 +129,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AllEvents.cs" />
     <Compile Include="Models\Auth.cs" />
     <Compile Include="Models\Etouches.cs" />
     <Compile Include="Models\EventsList.cs" />
@@ -174,6 +175,7 @@
     <Content Include="Views\Events\Nano.cshtml" />
     <Content Include="Views\Events\Aicc.cshtml" />
     <Content Include="Views\Events\EuroPlace.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

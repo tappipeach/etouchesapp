@@ -10,14 +10,15 @@ namespace RegCenter.Models
 {
     public class Etouches
     {
+        // Account Information for authorization
         public String AccountKey = "c2d3a15e04e3fcbb96fcfcec42bed57d69fc69cb";
         public String AccountId = "1831";
-        public String Username = "colinmcfadden";
-        public String Password = "I@DelT43";
 
+        // URI Definitions
         const String BaseUrl = "https://etouches.com/api/v2";
       
-
+      
+        // GET: Generate accesstoken
         public Auth Authorize() {
             // create a restclient
             RestClient Client = new RestClient(BaseUrl + "/global/");
@@ -32,6 +33,25 @@ namespace RegCenter.Models
             var response = Client.Execute<Auth>(request);
 
             return response.Data;
+        }
+
+        //GET: List all events in eTouches
+        //PARAMS: accesstoken, int for array
+        public dynamic ListEvents(String token)
+        {
+            // new RestSharp client
+            var eventClient = new RestClient("https://etouches.com/api/v2/");
+            // new RestRequest
+            var request = new RestRequest("global/listEvents.json?accesstoken=" + token, Method.GET);
+            request.RequestFormat = DataFormat.Json;
+
+            // execute URI, response contains query of JSON
+            var response = eventClient.Execute(request).Content;
+
+           // AllEvents[] eventsArray = JsonConvert.DeserializeObject<AllEvents[]>(response);
+           // AllEvents eventListing = eventsArray[1];
+
+            return response;
         }
 
         // GET: Event details
@@ -64,14 +84,13 @@ namespace RegCenter.Models
             request.RequestFormat = DataFormat.Json;
 
             // execute URI, response contains query of JSON
-            var response = eventClient.Execute(request);
+            var response = eventClient.Execute(request).Content;
 
-            // var getQuestions = Newtonsoft.Json.Linq.JObject.Parse(response.Content);
-            // deserialize JSON
-            var getQuestions = JsonConvert.DeserializeObject<List<QuestionsList>>(response.Content);
-            //var clicks = Convert.ToInt32(json.data.link_clicks.Value); NOT SURE WHAT THIS IS
+            QuestionsList[] questionObject = JsonConvert.DeserializeObject<QuestionsList[]>(response);
 
-            return getQuestions;
+            QuestionsList questionValue = questionObject[2];
+
+            return questionValue;
 
         }
 

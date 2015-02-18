@@ -9,15 +9,11 @@ namespace RegCenter.Models
 {
     public class QuestionsList
     {
-        public Questions Questions { get; set; }
-    }
-
-    public class Questions
-    {
-        [JsonProperty("questionid")]
-        public string questionid { get; set; }
-
-        [JsonProperty("name")]
+        public int questionid { get; set; }
+        public string fieldname { get; set; }
+        public int fieldtype { get; set; }
         public string name { get; set; }
+        public int pageid {get; set;}
+        public string page { get; set; }
     }
 }

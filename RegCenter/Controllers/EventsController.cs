@@ -37,19 +37,14 @@ namespace RegCenter.Controllers
             var eventDetails = consume.GetEvent(eventId, getKey);
             var listQuestions = consume.GetQuestions(eventId, getKey);
 
-            if (eventDetails != null)
-            {
-                ViewBag.test = eventDetails.name;
-                ViewBag.test1 = eventDetails.code;
-                ViewBag.dates = eventDetails.startdate + " to " + eventDetails.enddate;
-
-                ViewBag.Questions = listQuestions.name;
-            }
-            else
-            {
-                ViewBag.test = "Seriously wtf";
-            }
             
+
+            ViewBag.test = eventDetails.name;
+            ViewBag.test1 = eventDetails.code;
+            ViewBag.dates = eventDetails.startdate + " to " + eventDetails.enddate;
+
+            ViewBag.questionTitle = listQuestions.page;
+            ViewBag.question1 = listQuestions.name;
 
             return View();
         }
@@ -71,6 +66,18 @@ namespace RegCenter.Controllers
 
         public ActionResult EuroPlace()
         {
+            return View();
+        }
+
+        public ActionResult Index()
+        {
+            Etouches consume = new Etouches();
+
+            List<AllEvents> eventsList = JsonConvert.DeserializeObject<List<AllEvents>>(consume.ListEvents(getKey));
+
+            ViewBag.list = eventsList;
+    
+
             return View();
         }
     }
