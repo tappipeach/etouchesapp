@@ -7,18 +7,21 @@
 
 <p><strong>Date:</strong> @ViewBag.dates</p>
 
-<form>
-    <div class="form-group">
-        <label for="verifyemail">@ViewBag.question1</label>
-        <input type="email" name="email" class="form-control" placeholder="@ViewBag.question1" />
-    </div>
-</form>
+@foreach (var eachQuestion in ViewBag.questions)
+{
+    if (@eachQuestion.pageid == 1) 
+    {
+        <li>@eachQuestion.name</li>
 
-<h3>@ViewBag.questionTitle</h3>
+    }
+    <div class="form-group" id="page-two">
 
-<form>
-    <div class="form-group">
-        <label for="verifyemail">@ViewBag.question1</label>
-        <input type="email" name="email" class="form-control" placeholder="@ViewBag.question1" />
+                @if (@eachQuestion.pageid == 2 && @eachQuestion.fieldtype == 0)
+                {
+                    <label>@eachQuestion.name</label>
+                    <input type="text" class="form-control" />
+                }
+
     </div>
-</form>
+    
+} <!-- end foreach loop -->

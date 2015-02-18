@@ -37,14 +37,12 @@ namespace RegCenter.Controllers
             var eventDetails = consume.GetEvent(eventId, getKey);
             var listQuestions = consume.GetQuestions(eventId, getKey);
 
-            
+            List<QuestionsList> questionList = JsonConvert.DeserializeObject<List<QuestionsList>>(listQuestions);
+            ViewBag.questions = questionList;
 
             ViewBag.test = eventDetails.name;
             ViewBag.test1 = eventDetails.code;
             ViewBag.dates = eventDetails.startdate + " to " + eventDetails.enddate;
-
-            ViewBag.questionTitle = listQuestions.page;
-            ViewBag.question1 = listQuestions.name;
 
             return View();
         }
@@ -73,11 +71,10 @@ namespace RegCenter.Controllers
         {
             Etouches consume = new Etouches();
 
+            //initiate list of events
             List<AllEvents> eventsList = JsonConvert.DeserializeObject<List<AllEvents>>(consume.ListEvents(getKey));
-
             ViewBag.list = eventsList;
     
-
             return View();
         }
     }

@@ -75,7 +75,7 @@ namespace RegCenter.Models
         }
 
         // GET: Event questions
-        public QuestionsList GetQuestions(String id, String token) {
+        public dynamic GetQuestions(String id, String token) {
 
             // new RestSharp client
             var eventClient = new RestClient("https://etouches.com/api/v2/");
@@ -86,11 +86,11 @@ namespace RegCenter.Models
             // execute URI, response contains query of JSON
             var response = eventClient.Execute(request).Content;
 
-            QuestionsList[] questionObject = JsonConvert.DeserializeObject<QuestionsList[]>(response);
+           // QuestionsList[] questionObject = JsonConvert.DeserializeObject<QuestionsList[]>(response);
 
-            QuestionsList questionValue = questionObject[2];
+           // QuestionsList questionValue = questionObject[2];
 
-            return questionValue;
+            return response;
 
         }
 
